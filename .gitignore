@@ -1,32 +1,3 @@
-.envbox
-
-Skip to content
-Product
-Solutions
-Open Source
-Pricing
-Search
-Sign in
-Sign up
-PANxxj
-/
-djackets_django
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-djackets_django/.gitignore
-@PANxxj
-PANxxj commit
-Latest commit f9e1eba 4 hours ago
- History
- 1 contributor
-140 lines (116 sloc)  1.82 KB
- 
 
 .envbox
 # mypy 
