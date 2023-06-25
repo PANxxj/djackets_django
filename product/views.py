@@ -4,6 +4,8 @@ from .models import *
 from .serializers import*
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.db.models import Q
 
 class LatestProductList(APIView):
     def get(self, request, *args, **kwargs):
@@ -36,3 +38,13 @@ class CategoryDetail(APIView):
         return Response(ser.data)
 
 
+@api_view(['POST'])
+def search(request):
+    query = request.data.get('query','')
+
+    if query:
+        product=Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        ser=ProductSerializers(product,many=True)
+        return Response(ser.data)
+    else:
+        Response({'product':[]})
