@@ -38,7 +38,7 @@ class CategoryDetail(APIView):
         return Response(ser.data)
 
 
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def search(request):
     query = request.data.get('query','')
 
@@ -48,3 +48,14 @@ def search(request):
         return Response(ser.data)
     else:
         Response({'product':[]})
+
+class Search(APIView):
+    def post(self,request):
+        query = request.data.get('query','')
+
+        if query:
+            product=Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+            ser=ProductSerializers(product,many=True)
+            return Response(ser.data)
+        else:
+            Response({'product':[]})
